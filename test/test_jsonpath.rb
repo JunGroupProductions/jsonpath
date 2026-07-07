@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require 'phocus'
 require 'jsonpath'
 require 'json'
 
-class TestJsonpath < MiniTest::Unit::TestCase
+class TestJsonpath < Minitest::Test
   def setup
     @object = example_object
     @object2 = example_object
@@ -905,7 +904,7 @@ class TestJsonpath < MiniTest::Unit::TestCase
     path = "$..[?(@['price'] == 9 || @['price'] == 33)].title"
     assert_equal ["Sayings of the Century", "Moby Dick", "Sayings of the Century", "Moby Dick"], JsonPath.new(path).on(@object)
   end
-  
+
   def test_runtime_error_frozen_string
     skip('in ruby version below 2.2.0 this error is not raised') if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2.0') || Gem::Version.new(RUBY_VERSION) > Gem::Version::new('2.6')
     json = '
@@ -1189,7 +1188,7 @@ class TestJsonpath < MiniTest::Unit::TestCase
       }
     }.to_json
 
-    assert_raises(MultiJson::ParseError) { JsonPath.new('$.a', max_nesting: 1).on(json) }
+    assert_raises(MultiJSON::ParseError) { JsonPath.new('$.a', max_nesting: 1).on(json) }
   end
 
   def test_linefeed_in_path_error

@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require 'phocus'
 require 'jsonpath'
 require 'json'
 
-class TestJsonpathReadme < MiniTest::Unit::TestCase
+class TestJsonpathReadme < Minitest::Test
 
   def setup
     @json = <<-HERE_DOC

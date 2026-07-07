@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require 'phocus'
 require 'jsonpath'
 
-class TestJsonpathBin < MiniTest::Unit::TestCase
+class TestJsonpathBin < Minitest::Test
   def setup
     @runner = 'ruby -Ilib bin/jsonpath'
     @original_dir = Dir.pwd

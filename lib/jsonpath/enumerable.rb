@@ -92,11 +92,12 @@ class JsonPath
           step = process_function_or_literal(array_args[2], 1)
           next unless step
 
+          steps = (start_idx..end_idx).step(step)
           if @mode == :delete
-            (start_idx..end_idx).step(step) { |i| node[i] = nil }
+            steps.each { |i| node[i] = nil }
             node.compact!
           else
-            (start_idx..end_idx).step(step) { |i| each(node, i, pos + 1, &blk) }
+            steps.each { |i| each(node, i, pos + 1, &blk) }
           end
         end
       end
